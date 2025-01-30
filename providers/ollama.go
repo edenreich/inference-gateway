@@ -1,5 +1,7 @@
 package providers
 
+import "strings"
+
 type OllamaDetails struct {
 	Format            string      `json:"format"`
 	Family            string      `json:"family"`
@@ -78,22 +80,36 @@ type GenerateRequestOllama struct {
 }
 
 func (r *GenerateRequest) TransformOllama() GenerateRequestOllama {
-	// Get the last message content as prompt since Ollama expects a single prompt
-	lastMessage := r.Messages[len(r.Messages)-1].Content
-
-	// Use first message as system prompt if it exists and is a system message
+	// Combine all messages into a conversation format
+	var messages []Message
 	var systemPrompt string
-	if len(r.Messages) > 1 && r.Messages[0].Role == RoleSystem {
+
+	// Extract system message if present
+	if len(r.Messages) > 0 && r.Messages[0].Role == RoleSystem {
 		systemPrompt = r.Messages[0].Content
+		messages = r.Messages[1:]
+	} else {
+		messages = r.Messages
+	}
+
+	// Build prompt with conversation history
+	var conversationHistory strings.Builder
+	for _, msg := range messages {
+		switch msg.Role {
+		case RoleUser:
+			conversationHistory.WriteString("User: " + msg.Content + "\n")
+		case RoleAssistant:
+			conversationHistory.WriteString("Assistant: " + msg.Content + "\n")
+		}
 	}
 
 	return GenerateRequestOllama{
 		Model:  r.Model,
-		Prompt: lastMessage,
+		Prompt: conversationHistory.String(),
 		System: systemPrompt,
-		Stream: false, // Default to non-streaming
+		Stream: false,
 		Options: &OllamaOptions{
-			Temperature: float64Ptr(0.7), // Default temperature
+			Temperature: float64Ptr(0.7),
 		},
 	}
 }
