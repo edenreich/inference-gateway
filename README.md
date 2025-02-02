@@ -65,7 +65,8 @@ graph TD
     P[Proxy Gateway] --> E[OpenAI]
     P[Proxy Gateway] --> G[Cloudflare]
     P[Proxy Gateway] --> H[Cohere]
-    P[Proxy Gateway] --> H[Anthropic]
+    P[Proxy Gateway] --> I[Anthropic]
+    P[Proxy Gateway] --> K[Deepseek]
 ```
 
 Client is sending:
@@ -108,6 +109,7 @@ Client receives:
 - [Cloudflare](https://www.cloudflare.com/)
 - [Cohere](https://docs.cohere.com/docs/the-cohere-platform)
 - [Anthropic](https://docs.anthropic.com/en/api/getting-started)
+- [Deepseek](https://api-docs.deepseek.com/)
 
 ## Configuration
 
