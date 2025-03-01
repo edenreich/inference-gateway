@@ -42,6 +42,8 @@
 ### Providers
 | Environment Variable | Default Value | Description |
 |---------------------|---------------|-------------|
+| DEEPSEEK_API_URL | `https://api.deepseek.com/v1` | Deepseek API URL |
+| DEEPSEEK_API_KEY | `""` | Deepseek API Key |
 | ANTHROPIC_API_URL | `https://api.anthropic.com` | Anthropic API URL |
 | ANTHROPIC_API_KEY | `""` | Anthropic API Key |
 | CLOUDFLARE_API_URL | `https://api.cloudflare.com/client/v4/accounts/{ACCOUNT_ID}` | Cloudflare API URL |

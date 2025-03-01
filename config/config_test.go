@@ -38,6 +38,16 @@ func TestLoad(t *testing.T) {
 					IdleTimeout:  120 * time.Second,
 				},
 				Providers: map[string]*providers.Config{
+					providers.DeepseekID: {
+						ID:       providers.DeepseekID,
+						Name:     providers.DeepseekDisplayName,
+						URL:      providers.DeepseekDefaultBaseURL,
+						AuthType: providers.AuthTypeBearer,
+						Endpoints: providers.Endpoints{
+							List:     providers.DeepseekListEndpoint,
+							Generate: providers.DeepseekGenerateEndpoint,
+						},
+					},
 					providers.AnthropicID: {
 						ID:       providers.AnthropicID,
 						Name:     providers.AnthropicDisplayName,
@@ -202,6 +212,16 @@ func TestLoad(t *testing.T) {
 							Generate: providers.AnthropicGenerateEndpoint,
 						},
 					},
+					providers.DeepseekID: {
+						ID:       providers.DeepseekID,
+						Name:     providers.DeepseekDisplayName,
+						URL:      providers.DeepseekDefaultBaseURL,
+						AuthType: providers.AuthTypeBearer,
+						Endpoints: providers.Endpoints{
+							List:     providers.DeepseekListEndpoint,
+							Generate: providers.DeepseekGenerateEndpoint,
+						},
+					},
 				},
 			},
 		},
@@ -312,6 +332,16 @@ func TestLoad(t *testing.T) {
 						Endpoints: providers.Endpoints{
 							List:     providers.AnthropicListEndpoint,
 							Generate: providers.AnthropicGenerateEndpoint,
+						},
+					},
+					providers.DeepseekID: {
+						ID:       providers.DeepseekID,
+						Name:     providers.DeepseekDisplayName,
+						URL:      providers.DeepseekDefaultBaseURL,
+						AuthType: providers.AuthTypeBearer,
+						Endpoints: providers.Endpoints{
+							List:     providers.DeepseekListEndpoint,
+							Generate: providers.DeepseekGenerateEndpoint,
 						},
 					},
 				},

@@ -20,6 +20,7 @@ const (
 
 // The default base URLs of each provider
 const (
+	DeepseekDefaultBaseURL   = "https://api.deepseek.com"
 	AnthropicDefaultBaseURL  = "https://api.anthropic.com"
 	CloudflareDefaultBaseURL = "https://api.cloudflare.com/client/v4/accounts/{ACCOUNT_ID}"
 	CohereDefaultBaseURL     = "https://api.cohere.com"
@@ -30,6 +31,7 @@ const (
 
 // The ID's of each provider
 const (
+	DeepseekID   = "deepseek"
 	AnthropicID  = "anthropic"
 	CloudflareID = "cloudflare"
 	CohereID     = "cohere"
@@ -40,6 +42,7 @@ const (
 
 // Display names for providers
 const (
+	DeepseekDisplayName   = "Deepseek"
 	AnthropicDisplayName  = "Anthropic"
 	CloudflareDisplayName = "Cloudflare"
 	CohereDisplayName     = "Cohere"

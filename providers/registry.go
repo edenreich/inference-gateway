@@ -30,6 +30,10 @@ const (
 	// Anthropic endpoints
 	AnthropicListEndpoint     = "/v1/models"
 	AnthropicGenerateEndpoint = "/v1/messages"
+
+	// Deepseek endpoints
+	DeepseekListEndpoint     = "/v1/models"
+	DeepseekGenerateEndpoint = "/v1/chat/completions"
 )
 
 // Endpoints exposed by each provider
@@ -96,6 +100,16 @@ func (p *ProviderRegistryImpl) BuildProvider(providerID string, client Client) (
 
 // The registry of all providers
 var Registry = map[string]Config{
+	DeepseekID: {
+		ID:       DeepseekID,
+		Name:     DeepseekDisplayName,
+		URL:      DeepseekDefaultBaseURL,
+		AuthType: AuthTypeBearer,
+		Endpoints: Endpoints{
+			List:     DeepseekListEndpoint,
+			Generate: DeepseekGenerateEndpoint,
+		},
+	},
 	AnthropicID: {
 		ID:       AnthropicID,
 		Name:     AnthropicDisplayName,

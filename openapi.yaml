@@ -287,6 +287,7 @@ components:
         - cloudflare
         - cohere
         - anthropic
+        - deepseek
     ProviderSpecificResponse:
       type: object
       description: |
@@ -564,6 +565,16 @@ components:
           - providers:
               title: "Providers"
               settings:
+                - name: deepseek_api_url
+                  env: "DEEPSEEK_API_URL"
+                  type: string
+                  default: "https://api.deepseek.com/v1"
+                  description: "Deepseek API URL"
+                - name: deepseek_api_key
+                  env: "DEEPSEEK_API_KEY"
+                  type: string
+                  description: "Deepseek API Key"
+                  secret: true
                 - name: anthropic_api_url
                   env: "ANTHROPIC_API_URL"
                   type: string
@@ -1095,3 +1106,34 @@ components:
                                 type: string
                               content:
                                 type: string
+        deepseek:
+          id: "deepseek"
+          url: "https://api.deepseek.com/v1"
+          auth_type: "none"
+          endpoints:
+            list:
+              endpoint: "/v1/models"
+              method: "GET"
+              schema:
+                response:
+                  type: object
+                  properties:
+                    models:
+                      type: array
+                      items:
+                        $ref: "#/components/schemas/Model"
+            generate:
+              endpoint: "/v1/chat/completions"
+              method: "POST"
+              schema:
+                request:
+                  type: object
+                  properties:
+                    model:
+                      type: string
+                    messages:
+                      type: array
+                      items:
+                        $ref: "#/components/schemas/Message"
+                response:
+                  $ref: "#/components/schemas/GenerateResponse"
